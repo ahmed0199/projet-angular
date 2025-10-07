@@ -1,33 +1,33 @@
-{{ EVENTS }}
 <div class="container py-4">
     <h2 class="mb-3">Liste des événements</h2>
 
     <!-- Recherche -->
     <input type="text" class="form-control mb-4"
-           placeholder="Rechercher un événement">
+         placeholder="Rechercher un événement"
+         [(ngModel)]="searchTerm">
 
    <div class="row g-3">
-  <div class="col-md-4" *ngFor="let event of EVENTS">
+  <div class="col-md-4" *ngFor="let e of filteredEvents">
     <div class="card h-100 shadow-sm">
       <!-- Image -->
-      <img [src]="event.imageUrl"
+      <img [src]="e.imageUrl"
            class="card-img-top img-fluid"
            style="height: 200px; object-fit: cover;">
 
       <!-- Contenu -->
       <div class="card-body">
-        <h5 class="card-title">{{ event.titre }}</h5>
-        <p class="text-muted">{{ event.description }}</p>
-        <p><strong>Date:</strong> {{ event.date }}</p>
-        <p><strong>Lieu:</strong> {{ event.lieu }}</p>
-        <p>Prix: {{ event.prix === 0 ? 'Gratuit' : event.prix + ' DT' }}</p>
-        <p>Places: {{ event.nbPlaces }}</p>
-        <p class="fw-bold">👍 {{ event.nbrLikes }} Likes</p>
+        <h5 class="card-title">{{ e.titre }}</h5>
+        <p class="text-muted">{{ e.description }}</p>
+        <p><strong>Date:</strong> {{ e.date }}</p>
+        <p><strong>Lieu:</strong> {{ e.lieu }}</p>
+        <p>Prix: {{ e.prix === 0 ? 'Gratuit' : e.prix + ' DT' }}</p>
+        <p>Places: {{ e.nbPlaces }}</p>
+        <p class="fw-bold">👍 {{ e.nbrLikes }} Likes</p>
 
         <!-- Bouton Like (optionnel) -->
         <button class="btn btn-sm btn-primary"
-                  (click)="like(event)"
-                  [disabled]="isExpired(event) || event.nbPlaces <= 0">
+                  (click)="like(e)"
+                  [disabled]="isExpired(e) || e.nbPlaces <= 0">
             👍 Like
           </button>
       </div>

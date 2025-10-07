@@ -8,6 +8,8 @@ import { Event } from './../../models/event';
 })
 export class ListEventComponent {
     today = new Date();
+    searchTerm = '';
+
 
   EVENTS: Event[] = [
   {
@@ -66,6 +68,12 @@ isExpired(e: Event): boolean {
   like(e: Event): void {
     if (this.isExpired(e) || e.nbPlaces <= 0) return;
     e.nbrLikes++;
+  }
+  get filteredEvents(): Event[] {
+    const q = this.searchTerm.trim().toLowerCase();
+    return !q ? this.EVENTS : this.EVENTS.filter(e =>
+      e.titre.toLowerCase().includes(q) || e.lieu.toLowerCase().includes(q)
+    );
   }
 
 }
