@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Event } from './../../models/event';
+import { Event } from '../../../models/event';
 
 @Component({
   selector: 'app-list-event',
@@ -20,7 +20,7 @@ export class ListEventComponent {
     lieu: "Théâtre Municipal",
     prix: 50,
     organisateurId: 101,
-    imageUrl: "assets/images/jazz.jpg",
+    imageUrl: "/images/event.png",
     nbPlaces: 200,
     nbrLikes: 35
   },
@@ -32,7 +32,7 @@ export class ListEventComponent {
     lieu: "Centre de Congrès",
     prix: 0, // gratuit
     organisateurId: 102,
-    imageUrl: "assets/images/ai_conf.jpg",
+    imageUrl: "/images/event.png",
     nbPlaces: 500,
     nbrLikes: 120
   },
@@ -44,7 +44,7 @@ export class ListEventComponent {
     lieu: "Espace Culturel",
     prix: 25,
     organisateurId: 103,
-    imageUrl: "assets/images/cuisine.jpg",
+    imageUrl: "/images/event.png",
     nbPlaces: 30,
     nbrLikes: 48
   },
@@ -56,7 +56,7 @@ export class ListEventComponent {
     lieu: "Carthage",
     prix: 10,
     organisateurId: 104,
-    imageUrl: "assets/images/marathon.jpg",
+    imageUrl: "/images/event.png",
     nbPlaces: 1000,
     nbrLikes: 300
   }

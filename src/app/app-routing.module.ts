@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './layout/home/home.component';
 import { NotFoundComponent } from './layout/not-found/not-found.component';
-import {ListEventComponent} from './layout/list-event/list-event.component';
+import {ListEventComponent} from './features/events/list-event/list-event.component';
 
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {path:'events', component: ListEventComponent},
+  { path: 'events', loadChildren: () => import('./features/events/events.module').then(m => m.EventsModule) },
+  { path: 'tickets', loadChildren: () => import('./features/tickets/tickets.module').then(m => m.TicketsModule) },
+
   { path: '**', component: NotFoundComponent }
 ];
 
