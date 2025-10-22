@@ -9,6 +9,7 @@ import { HomeComponent } from './layout/home/home.component';
 import { NotFoundComponent } from './layout/not-found/not-found.component';
 import { ListEventComponent } from './features/events/list-event/list-event.component';
 import {FormsModule} from '@angular/forms';
+import { CardComponent } from './features/events/card/card.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {FormsModule} from '@angular/forms';
     FooterComponent,
     HomeComponent,
     NotFoundComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
