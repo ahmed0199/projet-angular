@@ -3,36 +3,42 @@
 
     <!-- Recherche -->
     <input type="text" class="form-control mb-4"
-         placeholder="Rechercher un événement"
-         [(ngModel)]="searchTerm">
+           placeholder="Rechercher un événement"
+           [(ngModel)] = "searchItem"
+>
 
-   <div class="row g-3">
-  <div class="col-md-4" *ngFor="let e of filteredEvents">
-    <div class="card h-100 shadow-sm">
-      <!-- Image -->
-      <img [src]="e.imageUrl"
-           class="card-img-top img-fluid"
-           style="height: 200px; object-fit: cover;">
+    <div class="row g-3">
+        <div class="col-md-4"  *ngFor="let event of filter()">
+            <div class="card h-100 shadow-sm">
+                <img src={{event.imageUrl}}
+                     class="card-img-top img-fluid"
+                     style="height: 200px; object-fit: cover;">
 
-      <!-- Contenu -->
-      <div class="card-body">
-        <h5 class="card-title">{{ e.titre }}</h5>
-        <p class="text-muted">{{ e.description }}</p>
-        <p><strong>Date:</strong> {{ e.date }}</p>
-        <p><strong>Lieu:</strong> {{ e.lieu }}</p>
-        <p>Prix: {{ e.prix === 0 ? 'Gratuit' : e.prix + ' DT' }}</p>
-        <p>Places: {{ e.nbPlaces }}</p>
-        <p class="fw-bold">👍 {{ e.nbrLikes }} Likes</p>
+                <div class="card-body">
+                    <h5 class="card-title">{{event.titre |uppercase}}</h5>
+                    <p class="text-muted">{{event.lieu}}</p>
+                    <p>{{event.description}}</p>
+                    <p>{{event.nbPlaces}}</p>
+                    <p class="fw-bold">{{event.prix}}</p>
+                    <p>{{event.nbrLikes}}</p>
 
-        <!-- Bouton Like (optionnel) -->
-        <button class="btn btn-sm btn-primary"
-                  (click)="like(e)"
-                  [disabled]="isExpired(e) || e.nbPlaces <= 0">
-            👍 Like
-          </button>
-      </div>
+                    <!-- Boutons d'action -->
+                    <div class="d-flex gap-2 flex-wrap">
+                        <button class="btn btn-sm btn-primary" (click)="incrLikes(event)" [disabled]="isExpired(event)">
+                            👍 Like
+                        </button>
+                        
+                        <button class="btn btn-sm btn-success" (click)="buyTicket(event)" [disabled]="event.nbPlaces==0">
+                            Buy Ticket
+                        </button>
+                        
+                        <button class="btn btn-sm btn-outline-primary" [routerLink]="['./', event.id]">
+                            More Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-
+    <router-outlet></router-outlet>
 </div>

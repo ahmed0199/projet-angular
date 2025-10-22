@@ -1,26 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 import { Event } from '../../../models/event';
 
 @Component({
   selector: 'app-list-event',
   templateUrl: './list-event.component.html',
-  styleUrl: './list-event.component.css'
+  styleUrls: ['./list-event.component.css']
 })
 export class ListEventComponent {
-    today = new Date();
-    searchTerm = '';
-
-
-  EVENTS: Event[] = [
+  searchItem =""
+  listevent: Event[] = [
   {
     id: 1,
     titre: "Concert Jazz",
     description: "Un concert exceptionnel avec des artistes internationaux.",
-    date: new Date("2025-10-15T20:00:00"),
+    date: new Date("2024-10-15T20:00:00"),
     lieu: "Théâtre Municipal",
     prix: 50,
     organisateurId: 101,
-    imageUrl: "/images/event.png",
+    imageUrl: "images/event.png",
     nbPlaces: 200,
     nbrLikes: 35
   },
@@ -32,7 +29,7 @@ export class ListEventComponent {
     lieu: "Centre de Congrès",
     prix: 0, // gratuit
     organisateurId: 102,
-    imageUrl: "/images/event.png",
+    imageUrl: "images/event.png",
     nbPlaces: 500,
     nbrLikes: 120
   },
@@ -44,8 +41,8 @@ export class ListEventComponent {
     lieu: "Espace Culturel",
     prix: 25,
     organisateurId: 103,
-    imageUrl: "/images/event.png",
-    nbPlaces: 30,
+    imageUrl: "images/event.png",
+    nbPlaces: 5,
     nbrLikes: 48
   },
   {
@@ -56,24 +53,40 @@ export class ListEventComponent {
     lieu: "Carthage",
     prix: 10,
     organisateurId: 104,
-    imageUrl: "/images/event.png",
+    imageUrl: "images/event.png",
     nbPlaces: 1000,
     nbrLikes: 300
   }
 ];
-isExpired(e: Event): boolean {
-    return e.date < this.today;
-  }
 
-  like(e: Event): void {
-    if (this.isExpired(e) || e.nbPlaces <= 0) return;
-    e.nbrLikes++;
-  }
-  get filteredEvents(): Event[] {
-    const q = this.searchTerm.trim().toLowerCase();
-    return !q ? this.EVENTS : this.EVENTS.filter(e =>
-      e.titre.toLowerCase().includes(q) || e.lieu.toLowerCase().includes(q)
-    );
-  }
+incrLikes (event:Event) {
+  return event.nbrLikes++
+}
+
+buyTicket (event:Event ) {
+  return event.nbPlaces--
+
+}
+
+isExpired (event: Event) {
+ return new Date (event.date) < new Date();
+  
+}
+
+filter()
+{
+return this.listevent.filter(eventItem=>eventItem.titre.toLowerCase().includes(this.searchItem.toLowerCase()));
+// eventItem.lieu.toLowerCase().includes(this.searchItem.toLowerCase())
+}
+
+
+
+
+
+
+
+
+
+
 
 }

@@ -17,7 +17,6 @@ import {FormsModule} from '@angular/forms';
     FooterComponent,
     HomeComponent,
     NotFoundComponent,
-    ListEventComponent
   ],
   imports: [
     BrowserModule,
