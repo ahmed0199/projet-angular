@@ -1,5 +1,5 @@
 import { Component, Input, Output } from '@angular/core';
-import { Event } from '../../../models/event';
+import { Event } from '../models/event';
 import { EventEmitter } from 'stream';
 
 
