@@ -4,12 +4,12 @@
     <!-- Recherche -->
     <input type="text" class="form-control mb-4"
            placeholder="Rechercher un événement"
-           [(ngModel)] = "searchItem"
->
+           [(ngModel)] = "searchItem">
+           <button type="button" class="btn btn-primary" routerLink="./addevent">Add new event</button>
+
 
     <div class="row g-3">
         <div class="col-md-4"  *ngFor="let event of filter()">
-          <app-card [event]="event"></app-card>
             <div class="card h-100 shadow-sm">
                 <img src={{event.imageUrl}}
                      class="card-img-top img-fluid"
