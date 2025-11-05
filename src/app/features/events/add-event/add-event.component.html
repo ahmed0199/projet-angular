@@ -6,54 +6,54 @@
     <!-- Titre -->
     <div class="form-group mb-3">
       <label for="titre">Titre</label>
-      <input id="titre" type="text" class="form-control" formControlName="titre" placeholder="Titre de l'événement">
-      <small *ngIf="hasError('titre','required')" class="text-danger">Titre obligatoire</small>
-      <small *ngIf="hasError('titre','minlength')" class="text-danger">Minimum 5 caractères</small>
-      <small *ngIf="hasError('titre','pattern')" class="text-danger">Lettres et espaces uniquement</small>
+      <input id="titre" type="text" formControlName="titre" class="form-control" placeholder="Titre de l'événement">
+      <span *ngIf="titre?.hasError('required') && titre?.touched" class="text-danger">Titre obligatoire.</span>
+      <span *ngIf="titre?.hasError('minlength') && titre?.touched" class="text-danger">Minimum 5 caractères.</span>
+      <span *ngIf="titre?.hasError('pattern') && titre?.touched" class="text-danger">Lettres et espaces uniquement.</span>
     </div>
 
     <!-- Description -->
     <div class="form-group mb-3">
       <label for="description">Description</label>
-      <textarea id="description" rows="4" class="form-control" formControlName="description" placeholder="Décrivez l'événement"></textarea>
-      <small *ngIf="hasError('description','required')" class="text-danger">Description obligatoire</small>
-      <small *ngIf="hasError('description','minlength')" class="text-danger">Minimum 30 caractères</small>
+      <textarea id="description" rows="4" formControlName="description" class="form-control"></textarea>
+      <span *ngIf="description?.hasError('required') && description?.touched" class="text-danger">Description obligatoire.</span>
+      <span *ngIf="description?.hasError('minlength') && description?.touched" class="text-danger">Minimum 30 caractères.</span>
     </div>
 
     <!-- Date -->
     <div class="form-group mb-3">
       <label for="date">Date</label>
-      <input id="date" type="date" class="form-control" formControlName="date">
-      <small *ngIf="hasError('date','required')" class="text-danger">Date obligatoire</small>
+      <input id="date" type="date" formControlName="date" class="form-control">
+      <span *ngIf="date?.hasError('required') && date?.touched" class="text-danger">Date obligatoire.</span>
     </div>
 
     <!-- Lieu -->
     <div class="form-group mb-3">
       <label for="lieu">Lieu</label>
-      <input id="lieu" type="text" class="form-control" formControlName="lieu" placeholder="Lieu de l'événement">
-      <small *ngIf="hasError('lieu','required')" class="text-danger">Lieu obligatoire</small>
+      <input id="lieu" type="text" formControlName="lieu" class="form-control">
+      <span *ngIf="lieu?.hasError('required') && lieu?.touched" class="text-danger">Lieu obligatoire.</span>
     </div>
 
     <!-- Prix -->
     <div class="form-group mb-3">
-      <label for="prix">Prix (DT)</label>
-      <input id="prix" type="text" class="form-control" formControlName="prix" placeholder="Ex: 20.5">
-      <small *ngIf="hasError('prix','required')" class="text-danger">Prix obligatoire</small>
-      <small *ngIf="hasError('prix','pattern')" class="text-danger">Format invalide (ex: 12.5)</small>
+      <label for="prix">Prix</label>
+      <input id="prix" type="text" formControlName="prix" class="form-control" placeholder="Ex: 20.5">
+      <span *ngIf="prix?.hasError('required') && prix?.touched" class="text-danger">Prix obligatoire.</span>
+      <span *ngIf="prix?.hasError('pattern') && prix?.touched" class="text-danger">Format invalide (ex: 12.5)</span>
+    </div>
+
+    <!-- Nombre de places -->
+    <div class="form-group mb-3">
+      <label for="nbPlaces">Nombre de places</label>
+      <input id="nbPlaces" type="number" formControlName="nbPlaces" class="form-control" placeholder="Ex: 50">
+      <span *ngIf="nbPlaces?.hasError('required') && nbPlaces?.touched" class="text-danger">Champ obligatoire.</span>
+      <span *ngIf="nbPlaces?.hasError('pattern') && nbPlaces?.touched" class="text-danger">Doit être ≤ 100.</span>
     </div>
 
     <!-- Image -->
     <div class="form-group mb-3">
-      <label for="imageUrl">Image (chemin ou URL)</label>
-      <input id="imageUrl" type="text" class="form-control" formControlName="imageUrl" placeholder="assets/images/event.jpg">
-    </div>
-
-    <!-- Nombre de places -->
-    <div class="form-group mb-4">
-      <label for="nbPlaces">Nombre de places</label>
-      <input id="nbPlaces" type="number" class="form-control" formControlName="nbPlaces" placeholder="Ex: 50">
-      <small *ngIf="hasError('nbPlaces','required')" class="text-danger">Champ obligatoire</small>
-      <small *ngIf="hasError('nbPlaces','pattern')" class="text-danger">Doit être entre 1 et 100</small>
+      <label for="imageUrl">Image (URL ou chemin)</label>
+      <input id="imageUrl" type="text" formControlName="imageUrl" class="form-control" placeholder="assets/images/event.jpg">
     </div>
 
     <button type="submit" class="btn btn-primary w-100" [disabled]="eventForm.invalid">Ajouter</button>
