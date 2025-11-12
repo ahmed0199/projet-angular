@@ -22,7 +22,7 @@ export class AddEventComponent implements OnInit {
         Validators.required,
         Validators.minLength(30)
       ]),
-      date: new FormControl('', Validators.required,futurDateValidator),
+      date: new FormControl('', [Validators.required,futurDateValidator(7)]),
       lieu: new FormControl('', Validators.required),
       prix: new FormControl('', [
         Validators.required,
